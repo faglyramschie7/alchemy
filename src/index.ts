@@ -13,8 +13,22 @@ inquirer
       type: "checkbox",
       name: "type",
       message: "⚗️ What do you want to generate? Select all that applies",
-      choices: ["models", "controllers", "seeders"],
+      choices: ["models", "api",  "controllers", "seeders"],
       default: ["models"],
+    },
+    {
+      type: "checkbox",
+      name: "apiActions",
+      message: "🧪 Select the API Actions",
+      choices: ["get", "put", "post", "delete"],
+      default: ["get"],
+      when: (answers) => answers.type.includes("api")
+    },
+    {
+      name: "outdirApi",
+      message: "🧪 Where do you want to save the API?",
+      when: (answers) => answers.type.includes("api"),
+      default: (answers) => {return `${config.entryPoint}api/${answers.name}`}
     },
     {
       name: "outdirModel",
@@ -30,11 +44,14 @@ inquirer
     },
     {
       name: "outdirSeeders",
-      message: "🫘Where do you want to save the seeders?",
+      message: "🫘 Where do you want to save the seeders?",
       when: (answers) => answers.type.includes("seeders"),
       default: (answers) => {return `${config.entryPoint}seeders/${answers.name.toLowerCase()}`}
     },
   ])
   .then((answers) => {
     console.log("returned answers", answers);
+
+    for(let key in answers){
+    }
   });
