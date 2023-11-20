@@ -1,7 +1,10 @@
 import inquirer from "inquirer";
 import chalk from "chalk";
 import config from "./config.ts"
+import { check_data_type } from "./utils/checkDataTypes.ts";
+import { alchemyChapters } from "./utils/spellBook.ts";
 
+// begin
 console.log(chalk.whiteBright.bold("🔮  What are we building?"));
 inquirer
   .prompt([
@@ -53,5 +56,14 @@ inquirer
     console.log("returned answers", answers);
 
     for(let key in answers){
+      let data_type = check_data_type(answers[key])
+      console.log("alchemy key: ", key)
+      console.log("alchemy chapter: ", alchemyChapters[key])
+      if(alchemyChapters[key]){
+        console.log(alchemyChapters[key].magic())
+        console.log("-----------------------")
+      } else {
+        console.log("-----------------------")
+      }
     }
   });
