@@ -1,4 +1,4 @@
 export default {
   framework: "",
-  entryPoint: "../server/",
+  entryPoint: "~/server/",
 };
