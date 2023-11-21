@@ -3,50 +3,6 @@ import chalk from "chalk";
 import config from "./config.ts"
 import { check_data_type } from "./utils/checkDataTypes.ts";
 import { alchemyChapters } from "./utils/spellBook.ts";
-import yargs from "yargs";
-// YARGS LISTENER
-//
-
-const argv = yargs()
-  .command(
-    'make <name> [-c] [-m]',
-    'Create something',
-    (yargs) => {
-      yargs
-        .positional('name', {
-          describe: 'Name of the thing',
-          type: 'string',
-        })
-        .option('c', {
-          alias: 'controllers',
-          describe: 'Create controllers',
-          type: 'boolean',
-        })
-        .option('m', {
-          alias: 'models',
-          describe: 'Create models',
-          type: 'boolean',
-        });
-    },
-    (argv) => {
-      const name = argv.name;
-
-      if (argv.controllers) {
-        console.log("yargs controller casted")
-      }
-
-      if (argv.models) {
-        console.log("yargs models casted")
-      }
-
-      // Perform additional actions based on the provided options
-    }
-  )
-  .help()
-  .alias('help', 'h')
-  .parse()
-
-
 
 // INQUIRER BEGIN
 function runInquirer(){
@@ -117,7 +73,4 @@ inquirer
 }
 
 
-console.log("yargs keys", Object.keys(argv))
-if(process.argv.length <= 2 && Object.keys(argv).length <= 1){
-  runInquirer()
-}
+runInquirer()
